@@ -78,7 +78,7 @@ module Scrobbler
     def initialize(artist, name, data={})
       raise ArgumentError, "Artist is required" if artist.blank?
       raise ArgumentError, "Name is required" if name.blank?
-      @artist = artist
+      @artist = artist.is_a?(Artist) ? artist : Artist.new(artist)
       @name = name
       populate_data(data)
     end
